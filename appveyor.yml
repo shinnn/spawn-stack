@@ -1,0 +1,17 @@
+platform: x64
+shallow_clone: true
+skip_tags: true
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: 83HiACEYngc2//OzcISIcJuUpp/pidzqkYDXAL95gOWA0Djz1rEoyaH8K48eXL6G
+install:
+  - curl --silent --show-error --output stack.zip --location --insecure https://www.stackage.org/stack/windows-x86_64
+  - 7z x stack.zip stack.exe
+  - ps: Install-Product node Stable
+  - npm install
+build: off
+before_test: stack setup > nul
+test_script: node node_modules\nyc\bin\nyc.js node test.js
+on_success:
+  - npm install coveralls
+  - node node_modules\nyc\bin\nyc.js report --reporter=text-lcov | node node_modules\coveralls\bin\coveralls.js

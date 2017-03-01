@@ -1,0 +1,47 @@
+{
+  "name": "spawn-stack",
+  "version": "0.1.0",
+  "description": "Spawn a new process using `stack` command with the given arguments",
+  "repository": "shinnn/spawn-stack",
+  "author": {
+    "name": "Shinnosuke Watanabe",
+    "url": "https://github.com/shinnn"
+  },
+  "scripts": {
+    "pretest": "eslint --fix --format=codeframe index.js test.js",
+    "test": "nyc --reporter=html --reporter=text node test.js"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "spawn",
+    "stack",
+    "command",
+    "process",
+    "childprocess",
+    "haskell",
+    "promise",
+    "async",
+    "observable"
+  ],
+  "dependencies": {
+    "byline": "^5.0.0",
+    "execa": "^0.6.0",
+    "symbol-observable": "^1.0.4",
+    "zen-observable": "^0.4.0"
+  },
+  "devDependencies": {
+    "@shinnn/eslint-config-node": "^3.0.0",
+    "eslint": "^3.16.1",
+    "nyc": "^10.1.2",
+    "path-key": "^2.0.1",
+    "pretend-platform": "^1.0.1",
+    "rmfr": "^1.0.2",
+    "tape": "^4.6.3"
+  },
+  "eslintConfig": {
+    "extends": "@shinnn/node"
+  }
+}
