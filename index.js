@@ -6,8 +6,6 @@ const byline = require('byline');
 const execa = require('execa');
 const Observable = require('zen-observable');
 
-require('symbol-observable');
-
 const HASHES = new Map([
   ['darwin', 'macos'],
   ['freebsd', 'freebsd'],
