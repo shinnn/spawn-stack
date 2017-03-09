@@ -30,14 +30,14 @@
     "byline": "^5.0.0",
     "execa": "^0.6.0",
     "symbol-observable": "^1.0.4",
-    "zen-observable": "^0.4.0"
+    "zen-observable": "^0.5.0"
   },
   "devDependencies": {
     "@shinnn/eslint-config-node": "^3.0.0",
-    "eslint": "^3.16.1",
+    "eslint": "^3.17.1",
     "nyc": "^10.1.2",
     "path-key": "^2.0.1",
-    "pretend-platform": "^1.0.1",
+    "pretend-platform": "^2.0.0",
     "rmfr": "^1.0.2",
     "tape": "^4.6.3"
   },
