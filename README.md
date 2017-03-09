@@ -39,6 +39,20 @@ It returns the same value as [`execa`](https://github.com/sindresorhus/execa#exe
 
 > a `child_process` instance, which is enhanced to also be a `Promise` for a result `Object` with `stdout` and `stderr` properties.
 
+On POSIX, [`--allow-different-user`](https://github.com/commercialhaskell/stack/blob/v1.3.2/doc/yaml_configuration.md#allow-different-user) flag will be automatically enabled to prevent file permission problems, unless `--no-allow-different-user` flag is explicitly provided.
+
+```javascript
+process.platform !== 'win32'; //=> true
+
+spawnStack(['--numeric-version']).then(result => {
+  result.cmd; // 'stack --allow-different-user --numeric-version'
+});
+
+spawnStack(['--no-allow-different-user', '--numeric-version']).then(result => {
+  result.cmd; // 'stack --no-allow-different-user --numeric-version'
+});
+```
+
 The return value also has [`Symbol.observable`](https://tc39.github.io/proposal-observable/#observable-prototype-@@observable) method that returns a [zen-observable](https://github.com/zenparsing/zen-observable) instance passing each line of `stderr` to its [`Subscription`](https://tc39.github.io/proposal-observable/#subscription-objects). That means you can convert the return value into an [`Observable`](https://github.com/tc39/proposal-observable#observable) by using [`Observable.from`](https://github.com/tc39/proposal-observable#observablefrom).
 
 ```javascript
