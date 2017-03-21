@@ -57,22 +57,15 @@ module.exports = function spawnStack(stackArgs, options) {
     return data;
   }, err => {
     if (err.code === 'ENOENT') {
-      // Workaround for Windows:
-      // On Windows, the error includes `ENOENT` code even on unknown-subcommand error
-      // and doesn't includes `stack` in syscall
-      if (err.syscall.includes('stack')) {
-        const hash = HASHES.get(process.platform);
+      const hash = HASHES.get(process.platform);
 
-        err.INSTALL_URL = `https://docs.haskellstack.org/en/stable/install_and_upgrade/${
-          hash ? `#${hash}` : ''
-        }`;
+      err.INSTALL_URL = `https://docs.haskellstack.org/en/stable/install_and_upgrade/${
+        hash ? `#${hash}` : ''
+      }`;
 
-        err.message = `\`stack\` command is not found in your PATH. Make sure you have instaled Stack. ${
-          err.INSTALL_URL
-        }`;
-      } else {
-        err.message = `Command failed: stack ${stackArgs.join(' ')}`;
-      }
+      err.message = `\`stack\` command is not found in your PATH. Make sure you have instaled Stack. ${
+        err.INSTALL_URL
+      }`;
     }
 
     if (err.killed) {
