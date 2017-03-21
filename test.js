@@ -61,6 +61,14 @@ test('spawnStack()', t => {
     );
   });
 
+  spawnStack(['--stack-yaml=none', 'build']).catch(({message}) => {
+    t.strictEqual(
+      message.split('\n')[1],
+      'Could not parse \'/Users/shinnn/github/spawn-stack/none\':',
+      'should fail when the given subcommand exits with non-zero code.'
+    );
+  });
+
   const pkgs = ['array-0.5.1.1', 'time-1.8'];
   const cp = Observable.from(spawnStack(['unpack', ...pkgs]));
   const cpErr = Observable.from(spawnStack(['setup', '7.10.999', '--allow-different-user']));
