@@ -43,12 +43,12 @@ test('spawnStack() with no `stack` command', async t => {
 });
 
 test('spawnStack()', t => {
-  t.plan(8);
+  t.plan(9);
 
   spawnStack(['--numeric-version']).then(({stdout}) => {
     t.strictEqual(
       stdout,
-      '1.3.2',
+      '1.4.0',
       'should run `stack` subcomand.'
     );
   });
@@ -113,7 +113,7 @@ test('spawnStack()', t => {
   t.deepEqual(
     [closedBeforeUnsubscribed, closedAfterUnsubscribed],
     [false, true],
-    'should be cancelable via Subscription#unsubscribe()'
+    'should be cancelable via Subscription#unsubscribe().'
   );
 
   spawnStack(Buffer.from('1')).catch(({message}) => {
