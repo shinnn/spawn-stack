@@ -62,9 +62,8 @@ test('spawnStack()', t => {
   });
 
   spawnStack(['--stack-yaml=none', 'build']).catch(({message}) => {
-    t.strictEqual(
-      message.split('\n')[1],
-      'Could not parse \'/Users/shinnn/github/spawn-stack/none\':',
+    t.ok(
+      message.includes(resolve(__dirname, 'none')),
       'should fail when the given subcommand exits with non-zero code.'
     );
   });
