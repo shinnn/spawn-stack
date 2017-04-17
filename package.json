@@ -1,6 +1,6 @@
 {
   "name": "spawn-stack",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Spawn a new process using `stack` command with the given arguments",
   "repository": "shinnn/spawn-stack",
   "author": {
@@ -33,9 +33,8 @@
   },
   "devDependencies": {
     "@shinnn/eslint-config-node": "^3.0.0",
-    "eslint": "^3.18.0",
-    "nyc": "^10.1.2",
-    "path-key": "^2.0.1",
+    "eslint": "^3.19.0",
+    "nyc": "^10.2.0",
     "pretend-platform": "^2.0.0",
     "rmfr": "^1.0.2",
     "tape": "^4.6.3"
