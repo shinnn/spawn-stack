@@ -22,7 +22,7 @@ test('spawnStack() with no `stack` command', async t => {
   await spawnStack(['--version'], options).then(fail, err => {
     t.strictEqual(
       err.toString(),
-      'Error: `stack` command is not found in your PATH. Make sure you have instaled Stack. ' +
+      'Error: `stack` command is not found in your PATH. Make sure you have installed Stack. ' +
       'https://docs.haskellstack.org/en/stable/install_and_upgrade/',
       'should fail when `stack` command is not installed.'
     );
@@ -33,7 +33,7 @@ test('spawnStack() with no `stack` command', async t => {
   await spawnStack(['--help'], options).then(fail, err => {
     t.strictEqual(
       err.toString(),
-      'Error: `stack` command is not found in your PATH. Make sure you have instaled Stack. ' +
+      'Error: `stack` command is not found in your PATH. Make sure you have installed Stack. ' +
       'https://docs.haskellstack.org/en/stable/install_and_upgrade/#freebsd',
       'should show the platform-specific URL if available.'
     );

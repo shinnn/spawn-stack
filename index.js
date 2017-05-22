@@ -63,7 +63,7 @@ module.exports = function spawnStack(stackArgs, options) {
         hash ? `#${hash}` : ''
       }`;
 
-      err.message = `\`stack\` command is not found in your PATH. Make sure you have instaled Stack. ${
+      err.message = `\`stack\` command is not found in your PATH. Make sure you have installed Stack. ${
         err.INSTALL_URL
       }`;
     }
