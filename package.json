@@ -28,15 +28,15 @@
   ],
   "dependencies": {
     "byline": "^5.0.0",
-    "execa": "^0.6.3",
+    "execa": "^0.7.0",
     "zen-observable": "^0.5.1"
   },
   "devDependencies": {
     "@shinnn/eslint-config-node": "^3.0.0",
-    "eslint": "^3.19.0",
-    "nyc": "^10.3.2",
+    "eslint": "^4.0.0",
+    "nyc": "^11.0.2",
     "pretend-platform": "^2.0.0",
-    "rmfr": "^1.0.2",
+    "rmfr": "^1.0.3",
     "tape": "^4.6.3"
   },
   "eslintConfig": {

@@ -16,7 +16,8 @@ test('spawnStack() with no `stack` command', async t => {
   const fail = t.fail.bind(t, 'Unexpectedly succeeded.');
   const options = {
     cwd: resolve('C:/none/exists/'),
-    env: {}
+    env: {},
+    extendEnv: false
   };
 
   await spawnStack(['--version'], options).then(fail, err => {
@@ -73,8 +74,7 @@ test('spawnStack()', t => {
   const cpErr = Observable.from(spawnStack(['setup', '7.10.999', '--allow-different-user']));
 
   setTimeout(() => {
-    cp.filter(line => line.startsWith('Unpacked ')).reduce((arr, line) => [...arr, line], [])
-    .subscribe({
+    cp.filter(line => line.startsWith('Unpacked ')).reduce((arr, line) => [...arr, line], []).subscribe({
       next(arr) {
         t.deepEqual(
           arr,
