@@ -75,7 +75,7 @@ module.exports = function spawnStack(stackArgs, options) {
     observer.error(err);
   });
 
-  cp[Symbol.observable] = () => new Observable(observerArg => {
+  cp[Symbol.observable] = () => new Observable(observerArg => { // eslint-disable-line no-use-extend-native/no-use-extend-native
     observer = observerArg;
 
     for (const line of lines) {
