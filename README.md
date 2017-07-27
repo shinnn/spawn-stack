@@ -11,7 +11,7 @@
 const spawnStack = require('spawn-stack');
 
 spawnStack(['--version']).then(result => {
-  result.output; //=> 'Version 1.4.0 x86_64\nCompiled with:\n ...'
+  result.output; //=> 'Version 1.5.0 x86_64 hpack-0.17.1'
 });
 ```
 
