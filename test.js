@@ -49,7 +49,7 @@ test('spawnStack()', t => {
   spawnStack(['--numeric-version']).then(({stdout}) => {
     t.strictEqual(
       stdout,
-      '1.5.0',
+      '1.5.1',
       'should run `stack` subcomand.'
     );
   });
