@@ -28,7 +28,7 @@
   ],
   "dependencies": {
     "byline": "^5.0.0",
-    "execa": "^0.8.0",
+    "execa": "^0.7.0",
     "zen-observable": "^0.6.0"
   },
   "devDependencies": {
