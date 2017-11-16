@@ -1,11 +1,7 @@
-dist: trusty
 language: node_js
 node_js: node
 branches:
   except: /^v\d/
-before_install:
-  - mkdir -p ~/.local/bin
-  - export PATH=$HOME/.local/bin:$PATH
-  - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+before_install: curl -sSL https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/bin '*/stack'
 cache:
-  directories: $HOME/.stack
+  directories: ~/.stack
