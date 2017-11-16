@@ -1,6 +1,6 @@
 # spawn-stack
 
-[![NPM version](https://img.shields.io/npm/v/spawn-stack.svg)](https://www.npmjs.com/package/spawn-stack)
+[![npm version](https://img.shields.io/npm/v/spawn-stack.svg)](https://www.npmjs.com/package/spawn-stack)
 [![Build Status](https://travis-ci.org/shinnn/spawn-stack.svg?branch=master)](https://travis-ci.org/shinnn/spawn-stack)
 [![Build status](https://ci.appveyor.com/api/projects/status/stybf1ffx07eejur/branch/master?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/spawn-stack/branch/master)
 [![Coverage Status](https://coveralls.io/repos/github/shinnn/spawn-stack/badge.svg?branch=master)](https://coveralls.io/github/shinnn/spawn-stack?branch=master)
@@ -11,13 +11,13 @@
 const spawnStack = require('spawn-stack');
 
 spawnStack(['--version']).then(result => {
-  result.output; //=> 'Version 1.5.0 x86_64 hpack-0.17.1'
+  result.output; //=> 'Version 1.5.1 x86_64 hpack-0.17.1'
 });
 ```
 
 ## Installation
 
-Make sure [`stack`](https://github.com/commercialhaskell/stack) command is [installed](https://docs.haskellstack.org/en/stable/README/#how-to-install) in your `$PATH`, then [install](https://docs.npmjs.com/cli/install) `spawn-stack` via npm CLI.
+Make sure [`stack`](https://github.com/commercialhaskell/stack) command is [installed](https://docs.haskellstack.org/en/stable/README/#how-to-install) in your `$PATH`, then [install](https://docs.npmjs.com/cli/install) `spawn-stack` via [npm](https://docs.npmjs.com/getting-started/what-is-npm) CLI.
 
 ```
 npm install spawn-stack
@@ -31,7 +31,7 @@ const spawnStack = require('spawn-stack');
 
 ### spawnStack(*args* [, *options*])
 
-*args*: `Array<String>` (command line arguments passed to `stack` command)  
+*args*: `Array<string>` (command line arguments passed to `stack` command)  
 *options*: `Object` (`execa` options, with [`preferLocal`](https://github.com/sindresorhus/execa#preferlocal) defaulting to `false`)  
 Return: [`ChildProcess`](https://nodejs.org/api/child_process.html#child_process_class_childprocess)
 
@@ -39,7 +39,7 @@ It returns the same value as [`execa`](https://github.com/sindresorhus/execa#exe
 
 > a `child_process` instance, which is enhanced to also be a `Promise` for a result `Object` with `stdout` and `stderr` properties.
 
-On POSIX, [`--allow-different-user`](https://github.com/commercialhaskell/stack/blob/v1.3.2/doc/yaml_configuration.md#allow-different-user) flag will be automatically enabled to prevent file permission problems, unless `--no-allow-different-user` flag is explicitly provided.
+On POSIX, [`--allow-different-user`](https://github.com/commercialhaskell/stack/blob/v1.5.1/doc/yaml_configuration.md#allow-different-user) flag will be automatically enabled to prevent file permission problems, unless `--no-allow-different-user` flag is explicitly provided.
 
 ```javascript
 process.platform !== 'win32'; //=> true
@@ -59,7 +59,7 @@ The return value also has [`Symbol.observable`](https://tc39.github.io/proposal-
 const Observable = require('zen-observable');
 const spawnStack = require('spawn-stack');
 
-const cp = spawnStack(['setup', '8.0.2']);
+const cp = spawnStack(['setup', '8.2.1']);
 
 Observable.from(cp).subscribe({
   next(line) {
@@ -74,6 +74,4 @@ Observable.from(cp).subscribe({
 
 ## License
 
-Copyright (c) 2017 [Shinnosuke Watanabe](https://github.com/shinnn)
-
-Licensed under [the MIT License](./LICENSE).
+[ISC License](./LICENSE) © 2017 Shinnosuke Watanabe
