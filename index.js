@@ -15,12 +15,9 @@ const HASHES = new Map([
 
 module.exports = function spawnStack(stackArgs, options) {
   if (!Array.isArray(stackArgs)) {
-    return Promise.reject(new TypeError(
-      'Expected arguments of `stack` command (Array<string>), but got ' +
-      'a non-array value ' +
-      inspect(stackArgs) +
-      '.'
-    ));
+    return Promise.reject(new TypeError(`Expected arguments of \`stack\` command (Array<string>), but got a non-array value ${
+      inspect(stackArgs)
+    }.`));
   }
 
   if (
