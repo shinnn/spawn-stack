@@ -11,7 +11,7 @@
 const spawnStack = require('spawn-stack');
 
 spawnStack(['--version']).then(result => {
-  result.output; //=> 'Version 1.5.1 x86_64 hpack-0.17.1'
+  result.output; //=> 'Version 1.7.1 x86_64 ...'
 });
 ```
 
@@ -74,4 +74,4 @@ Observable.from(cp).subscribe({
 
 ## License
 
-[ISC License](./LICENSE) © 2017 Shinnosuke Watanabe
+[ISC License](./LICENSE) © 2017 - 2018 Shinnosuke Watanabe
