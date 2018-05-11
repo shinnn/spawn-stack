@@ -1,9 +1,8 @@
 'use strict';
 
-const inspect = require('util').inspect;
-
 const byline = require('byline');
 const execa = require('execa');
+const inspectWithKind = require('inspect-with-kind');
 const Observable = require('zen-observable');
 
 const HASHES = new Map([
@@ -13,17 +12,27 @@ const HASHES = new Map([
 	['win32', 'windows']
 ]);
 
-module.exports = function spawnStack(stackArgs, options) {
+module.exports = function spawnStack(...args) {
+	const argLen = args.length;
+
+	if (argLen !== 1 && argLen !== 2) {
+		return Promise.reject(new RangeError(`Expected 1 or 2 arguments (<Array<string>[, <Object>]), but got ${
+			argLen === 0 ? 'no' : argLen
+		} arguments.`));
+	}
+
+	let [stackArgs] = args;
+
 	if (!Array.isArray(stackArgs)) {
 		return Promise.reject(new TypeError(`Expected arguments of \`stack\` command (Array<string>), but got a non-array value ${
-			inspect(stackArgs)
+			inspectWithKind(stackArgs)
 		}.`));
 	}
 
 	if (
 		process.platform !== 'win32' &&
-    stackArgs.indexOf('--allow-different-user') === -1 &&
-    stackArgs.indexOf('--no-allow-different-user') === -1
+		!stackArgs.includes('--allow-different-user') &&
+		!stackArgs.includes('--no-allow-different-user')
 	) {
 		stackArgs = ['--allow-different-user'].concat(stackArgs);
 	}
@@ -44,7 +53,7 @@ module.exports = function spawnStack(stackArgs, options) {
 		}
 	};
 
-	const cp = execa('stack', stackArgs, Object.assign({preferLocal: false}, options));
+	const cp = execa('stack', stackArgs, Object.assign({preferLocal: false}, args[1]));
 	cp.stderr.setEncoding('utf8');
 
 	byline(cp.stderr).on('data', line => observer.next(line));

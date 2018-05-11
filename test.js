@@ -44,7 +44,7 @@ test('spawnStack() with no `stack` command', async t => {
 });
 
 test('spawnStack()', t => {
-	t.plan(9);
+	t.plan(10);
 
 	spawnStack(['--numeric-version']).then(({stdout}) => {
 		t.equal(
@@ -132,8 +132,16 @@ test('spawnStack()', t => {
 	spawnStack().catch(({message}) => {
 		t.equal(
 			message,
-			'Expected arguments of `stack` command (Array<string>), but got a non-array value undefined.',
+			'Expected 1 or 2 arguments (<Array<string>[, <Object>]), but got no arguments.',
 			'should fail when it takes no arguments.'
+		);
+	});
+
+	spawnStack([], {}, true).catch(({message}) => {
+		t.equal(
+			message,
+			'Expected 1 or 2 arguments (<Array<string>[, <Object>]), but got 3 arguments.',
+			'should fail when it takes too many arguments.'
 		);
 	});
 });
