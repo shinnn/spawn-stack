@@ -7,11 +7,10 @@ environment:
 install:
   - curl --silent --show-error --output stack.zip --location --insecure https://www.stackage.org/stack/windows-x86_64
   - 7z x stack.zip stack.exe
-  - ps: Install-Product node Stable
+  - ps: Install-Product node Stable x64
   - npm install
 build: off
 before_test: stack setup > nul
-test_script: node node_modules\nyc\bin\nyc.js node test.js
+test_script: npx nyc node test.js
 on_success:
-  - npm install coveralls
-  - node node_modules\nyc\bin\nyc.js report --reporter=text-lcov | node node_modules\coveralls\bin\coveralls.js
+  - npx nyc report --reporter=text-lcov | npx coveralls
