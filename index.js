@@ -53,7 +53,7 @@ module.exports = function spawnStack(...args) {
 		}
 	};
 
-	const cp = execa('stack', stackArgs, Object.assign({preferLocal: false}, args[1])); // eslint-disable-line prefer-object-spread
+	const cp = execa('stack', stackArgs, {preferLocal: false, ...args[1]});
 	cp.stderr.setEncoding('utf8');
 
 	byline(cp.stderr).on('data', line => observer.next(line));
