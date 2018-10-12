@@ -53,12 +53,12 @@ module.exports = function spawnStack(...args) {
 		}
 	};
 
-	const cp = execa('stack', stackArgs, Object.assign({preferLocal: false}, args[1]));
+	const cp = execa('stack', stackArgs, Object.assign({preferLocal: false}, args[1])); // eslint-disable-line prefer-object-spread
 	cp.stderr.setEncoding('utf8');
 
 	byline(cp.stderr).on('data', line => observer.next(line));
 
-	cp.then(data => {
+	cp.then(data => { // eslint-disable-line promise/prefer-await-to-then
 		observer.complete();
 		return data;
 	}, err => {

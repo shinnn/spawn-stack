@@ -9,8 +9,6 @@ const spawnStack = require('.');
 const test = require('tape');
 
 test('spawnStack() with no `stack` command', async t => {
-	t.plan(2);
-
 	pretendPlatform('aix');
 
 	const fail = t.fail.bind(t, 'Unexpectedly succeeded.');
@@ -20,39 +18,46 @@ test('spawnStack() with no `stack` command', async t => {
 		extendEnv: false
 	};
 
-	await spawnStack(['--version'], options).then(fail, err => {
+	try {
+		await spawnStack(['--version'], options);
+		fail();
+	} catch (err) {
 		t.equal(
 			err.toString(),
 			'Error: `stack` command is not found in your PATH. Make sure you have installed Stack. ' +
 			'https://docs.haskellstack.org/en/stable/install_and_upgrade/',
 			'should fail when `stack` command is not installed.'
 		);
-	});
+	}
 
 	pretendPlatform('freebsd');
 
-	await spawnStack(['--help'], options).then(fail, err => {
+	try {
+		await spawnStack(['--help'], options);
+		fail();
+	} catch (err) {
 		t.equal(
 			err.toString(),
 			'Error: `stack` command is not found in your PATH. Make sure you have installed Stack. ' +
 			'https://docs.haskellstack.org/en/stable/install_and_upgrade/#freebsd',
 			'should show the platform-specific URL if available.'
 		);
-	});
+	}
 
 	pretendPlatform.restore();
+	t.end();
 });
 
 test('spawnStack()', t => {
 	t.plan(10);
 
-	spawnStack(['--numeric-version']).then(({stdout}) => {
+	(async () => {
 		t.equal(
-			stdout,
+			(await spawnStack(['--numeric-version'])).stdout,
 			'1.7.1',
 			'should run `stack` subcomand.'
 		);
-	});
+	})();
 
 	spawnStack(['abcefgh', '--allow-different-user']).catch(err => {
 		t.equal(
