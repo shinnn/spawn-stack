@@ -1,6 +1,6 @@
 {
 	"name": "spawn-stack",
-	"version": "0.6.0",
+	"version": "0.7.0",
 	"description": "Spawn a new process using `stack` command with the given arguments",
 	"repository": "shinnn/spawn-stack",
 	"author": "Shinnosuke Watanabe (https://github.com/shinnn)",
